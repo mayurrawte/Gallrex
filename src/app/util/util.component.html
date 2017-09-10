@@ -11,6 +11,6 @@
   <img src="../../assets/galleryImage/1.jpg" class="img-responsive gallImg"/>
 </div>
 
-<div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" *ngIf="pictureViewMode" >
+<div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" *ngIf="pictureViewMode" (swipeleft)="onSwipeNext()" (swiperight)="onSwipePrev()" (pinchin)="onPinchIn($event)" (pinchout)="onPinchOut($event)">
   <img [src]="picture.location" class="img-responsive gallImg" id="img"/>
 </div>

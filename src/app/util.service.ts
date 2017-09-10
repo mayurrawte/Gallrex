@@ -13,7 +13,6 @@ export class UtilService {
   galleryNextImage = new Subject();
   galleryPrevImage = new Subject();
   position = 1;
-  initClick = true;
   public cancelView() {
     this.dialog.closeAll();
   }
@@ -24,38 +23,42 @@ export class UtilService {
     // console.log(dialogRef.componentInstance.elRef);
     // console.log(dialogRef.componentInstance.elRef.nativeElement.offsetParent);
     dialogRef.componentInstance.pictureViewMode = true;
-    this.position = data.position;
+    dialogRef.componentInstance.position = data.position;
     dialogRef.componentInstance.picture = data.activePicture;
     dialogRef.componentInstance.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'all 0.6s ease-in';
     this.galleryNextImage.subscribe(() => {
-      this.position = this.position + 1 ;
-      if (this.dataService.getAllImages()[this.position] !== undefined) {
+      dialogRef.componentInstance.position = dialogRef.componentInstance.position + 1 ;
+      if (this.dataService.getAllImages()[dialogRef.componentInstance.position] !== undefined) {
         this.resetTransform(dialogRef);
-        dialogRef.componentInstance.picture = this.dataService.getAllImages()[this.position];
+        dialogRef.componentInstance.picture = this.dataService.getAllImages()[dialogRef.componentInstance.position];
       }
+      console.log(dialogRef.componentInstance.position);
     });
     this.galleryPrevImage.subscribe(() => {
-      this.position = this.position - 1 ;
-      if (this.dataService.getAllImages()[this.position] !== undefined) {
+      dialogRef.componentInstance.position = dialogRef.componentInstance.position - 1 ;
+      if (this.dataService.getAllImages()[dialogRef.componentInstance.position] !== undefined) {
         this.resetTransform(dialogRef);
-        dialogRef.componentInstance.picture = this.dataService.getAllImages()[this.position];
+        dialogRef.componentInstance.picture = this.dataService.getAllImages()[dialogRef.componentInstance.position];
       }
+      console.log(dialogRef.componentInstance.position);
     });
     this.galleryTransform.subscribe((operation: string) => {
     if (operation === 'zoom-in') {
       dialogRef.componentInstance.zoomLevel = dialogRef.componentInstance.zoomLevel + 0.1;
     } else if (operation === 'zoom-out') {
-      dialogRef.componentInstance.zoomLevel = dialogRef.componentInstance.zoomLevel - 0.1;
+      if (dialogRef.componentInstance.zoomLevel > 1) {
+        dialogRef.componentInstance.zoomLevel = dialogRef.componentInstance.zoomLevel - 0.1;
+      }
     } else if (operation === 'rotate') {
       dialogRef.componentInstance.rotateDeg = dialogRef.componentInstance.rotateDeg + 90;
     }
     dialogRef.componentInstance.changeValue();
     console.log(dialogRef.componentInstance.elRef.nativeElement.offsetParent);
 
-    if (this.initClick) {
-      console.log(dialogRef.componentInstance.elRef.nativeElement.offsetParent.getElementsByClassName('cdk-overlay-pane')[0]);
+    if (dialogRef.componentInstance.initClick) {
+      // console.log(dialogRef.componentInstance.elRef.nativeElement.offsetParent.getElementsByClassName('cdk-overlay-pane')[0]);
       dialogRef.componentInstance.elRef.nativeElement.offsetParent.getElementsByClassName('cdk-overlay-pane')[0].style.transform = dialogRef.componentInstance.newValue;
-      this.initClick = false;
+      dialogRef.componentInstance.initClick = false;
     } else {
       dialogRef.componentInstance.elRef.nativeElement.offsetParent.style.transform = dialogRef.componentInstance.newValue;
     }
