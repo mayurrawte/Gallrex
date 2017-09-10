@@ -4,7 +4,8 @@
   <div class="container-fluid">
     <div *ngFor="let picture of allImages; let i= index">
       <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3 gallery-img " (click)="openImage(picture, i)">
-        <img class="img-responsive" [src]="picture.location">
+        <img class="img-responsive" [src]="picture.location" (load)="load(i);" [ngClass]="{'hidden': !picture.loaded}">
+        <div *ngIf="!picture.loaded"><img src="../../assets/loading1.gif" class="img-responsive"></div>
       </div>
     </div>
   </div>

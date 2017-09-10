@@ -13,6 +13,7 @@ export class UtilService {
   galleryNextImage = new Subject();
   galleryPrevImage = new Subject();
   position = 1;
+  initClick = true;
   public cancelView() {
     this.dialog.closeAll();
   }
@@ -49,18 +50,29 @@ export class UtilService {
       dialogRef.componentInstance.rotateDeg = dialogRef.componentInstance.rotateDeg + 90;
     }
     dialogRef.componentInstance.changeValue();
-    dialogRef.componentInstance.elRef.nativeElement.offsetParent.lastElementChild.style.transform = dialogRef.componentInstance.newValue;
-      dialogRef.componentInstance.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'all 0.6s ease-in';
+    console.log(dialogRef.componentInstance.elRef.nativeElement.offsetParent);
+
+    if (this.initClick) {
+      console.log(dialogRef.componentInstance.elRef.nativeElement.offsetParent.getElementsByClassName('cdk-overlay-pane')[0]);
+      dialogRef.componentInstance.elRef.nativeElement.offsetParent.getElementsByClassName('cdk-overlay-pane')[0].style.transform = dialogRef.componentInstance.newValue;
+      this.initClick = false;
+    } else {
+      dialogRef.componentInstance.elRef.nativeElement.offsetParent.style.transform = dialogRef.componentInstance.newValue;
+    }
+    dialogRef.componentInstance.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'all 0.6s ease-in';
     });
     dialogRef.afterClosed().subscribe(() => {
       this.galleryMode.next(false);
     });
-    console.log(dialogRef.componentInstance);
   }
   resetTransform(dialogRef) {
+    dialogRef.componentInstance.elRef.nativeElement.offsetParent.style.transition = 'none';
+    dialogRef.componentInstance.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'none';
     dialogRef.componentInstance.zoomLevel = 1;
     dialogRef.componentInstance.rotateDeg = 0;
     dialogRef.componentInstance.newValue = 'scale(1) rotateZ(0deg)';
+    dialogRef.componentInstance.elRef.nativeElement.offsetParent.style.transform = dialogRef.componentInstance.newValue;
+    dialogRef.componentInstance.elRef.nativeElement.offsetParent.style.transition = 'all 0.6s ease-in';
     // console.log(dialogRef.componentInstance);
   }
 }

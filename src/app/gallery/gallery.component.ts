@@ -8,15 +8,21 @@ import {DataService} from '../data.service';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-
   constructor(private utilService: UtilService, private dataService: DataService) { }
   allImages = [];
   ngOnInit() {
     this.allImages = this.dataService.getAllImages();
+    for (const i of this.allImages) {
+      i['loaded'] = false;
+      // console.log(i);
+    }
     console.log(this.allImages);
   }
   openImage(picture: {'name': '', 'location': ''}, i: number) {
     const data = {'activePicture': picture, position: i};
     this.utilService.pictureView(data);
+  }
+  load(i) {
+    this.allImages[i].loaded = true;
   }
 }
