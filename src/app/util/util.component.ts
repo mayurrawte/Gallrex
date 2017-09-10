@@ -36,18 +36,36 @@ export class UtilComponent implements OnInit {
     }
   }
   onPinchIn(data) {
-    this.zoomLevel = this.zoomLevel - data.scale;
-    console.log(data.scale);
+    console.log(this.zoomLevel);
+    if (this.zoomLevel - data.scale > 0.3 ) {
+      this.zoomLevel = this.zoomLevel - data.scale;
+    }
+    // console.log(data.scale);
     this.changeValue();
-    this.elRef.nativeElement.offsetParent.style.transform = this.newValue;
+    this.localChangeValue();
+    this.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'all 0.2s ease-in';
+    // this.elRef.nativeElement.offsetParent.style.transform = this.newValue;
+    console.log(this.elRef.nativeElement.offsetParent.nativeElement);
   }
   onPinchOut(data) {
+    console.log(this.zoomLevel);
       this.zoomLevel = this.zoomLevel + data.scale;
-    this.changeValue();
-    console.log(data.scale);
-    this.elRef.nativeElement.offsetParent.style.transform = this.newValue;
+     this.changeValue();
+    this.localChangeValue();
+    // console.log(data.scale);
+    // this.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'all 0.6s ease-in';
+    // this.elRef.nativeElement.offsetParent.style.transform = this.newValue;
+    console.log(this.elRef);
   }
-
+  localChangeValue() {
+    this.changeValue();
+    if (this.initClick) {
+      this.elRef.nativeElement.offsetParent.getElementsByClassName('cdk-overlay-pane')[0].style.transform = this.newValue;
+      this.initClick = false;
+    } else {
+      this.elRef.nativeElement.offsetParent.style.transform = this.newValue;
+    }
+  }
   resetTransform() {
     this.elRef.nativeElement.offsetParent.style.transition = 'none';
     this.elRef.nativeElement.offsetParent.lastElementChild.style.transition = 'none';
@@ -55,7 +73,7 @@ export class UtilComponent implements OnInit {
     this.rotateDeg = 0;
     this.newValue = 'scale(1) rotateZ(0deg)';
     this.elRef.nativeElement.offsetParent.style.transform = this.newValue;
-    this.elRef.nativeElement.offsetParent.style.transition = 'all 0.6s ease-in';
+    this.elRef.nativeElement.offsetParent.style.transition = 'all 0.2s ease-in';
     // console.log(dialogRef.componentInstance);
   }
 
