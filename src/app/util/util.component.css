@@ -1,0 +1,25 @@
+/deep/ .mat-dialog-container {
+  box-shadow: none !important;
+  display: block;
+  padding: 0px !important;
+  border-radius: 2px;
+  box-sizing: border-box;
+  overflow: auto;
+  max-width: 100vw !important;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  background: none !important;
+}
+
+
+/deep/ .mat-icon {
+  font-size:150% !important;
+  cursor: pointer;
+  margin:10px;
+}
+
+.gallImg {
+  width: 100%;
+  transition: all 0.6s ease-in;
+}

@@ -1,0 +1,13 @@
+.gallery-row {
+  margin-top: 20px;
+}
+.gallery-row img:hover {
+  cursor: zoom-in;
+}
+.gallery-img {
+  margin:10px 0px;
+}
+.gallery-container h3 {
+  text-align: right;
+  padding: 0px 30px;
+}

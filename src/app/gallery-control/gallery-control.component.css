@@ -1,0 +1,36 @@
+.gallery-container {
+  position: fixed;
+  bottom: 0px;
+  right:0px;
+  left:0px;
+  background-color:rgba(0, 0, 0, 0.51);
+  width: 100%;
+  padding:2px;
+  z-index:99999;
+  display: flex;
+  text-align: center;
+  margin:0px auto;
+  color: #FFF;
+}
+.gallert-cancel {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 2px;
+  z-index: 99999;
+  color: #FFF;
+  float: right;
+  text-align: right;
+}
+.control-btn {
+  text-align: center;
+  margin:0px auto;
+  font-size: 150%;
+}
+.control-btn /deep/ .mat-icon {
+  font-size: 150%;
+}
+.control-btn-cancel /deep/ .mat-icon{
+  font-size: 150% !important;
+}

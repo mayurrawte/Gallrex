@@ -1,0 +1,28 @@
+.bg1 {
+  background: url(../../assets/bg.jpg) center center no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height:400px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #FFFFFF;
+}
+.bg1 h3 {
+  font-size: 40px;
+  text-align: left;
+  margin-top: 100px;
+}
+.bg1 p {
+  margin: -15px 3px 0px;
+}
+.view {
+  margin-top: 8px;
+}
+.view a {
+  background: azure;
+  padding: 5px 132px;
+  border-radius: 3px;
+}
+.view a:hover {
+  text-decoration: none;
+}

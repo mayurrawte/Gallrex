@@ -1,0 +1,16 @@
+<div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" *ngIf="!pictureViewMode">
+  <!--<h2 md-dialog-title>{{title}}</h2>-->
+  <!--<md-dialog-content>-->
+    <!--<img src="../../assets/galleryImage/1.jpg" class="img-responsive"/>-->
+  <!--</md-dialog-content>-->
+  <!--<md-dialog-actions>-->
+    <!--<button md-button md-dialog-close [md-dialog-close]="false">No</button>-->
+    <!--&lt;!&ndash; Can optionally provide a result for the closing dialog. &ndash;&gt;-->
+    <!--<button md-button [md-dialog-close]="true">Yes</button>-->
+  <!--</md-dialog-actions>-->
+  <img src="../../assets/galleryImage/1.jpg" class="img-responsive gallImg"/>
+</div>
+
+<div class="col-md-12 col-xs-12 col-lg-12 col-sm-12" *ngIf="pictureViewMode" >
+  <img [src]="picture.location" class="img-responsive gallImg" id="img" [ngStyle]="{transform: newValue}"/>
+</div>

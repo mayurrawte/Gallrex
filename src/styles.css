@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css?family=Rajdhani:600');
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 1;
+}
+.cdk-overlay-pane {
+  width:100%;
+}
